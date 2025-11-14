@@ -18,6 +18,21 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
         "",
       ],
     },
+    {
+      command: "help",
+      output: [
+        "Available commands:",
+        "  about    - Learn about me",
+        "  skills   - View my technical skills",
+        "  projects - See my projects",
+        "  contact  - Get my contact information",
+        "  resume   - View/download my resume",
+        "  portfolio - Open the portfolio website",
+        "  clear    - Clear the terminal",
+        "  exit     - Close terminal and open portfolio",
+        "",
+      ],
+    },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
@@ -30,8 +45,9 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
       "  projects - See my projects",
       "  contact  - Get my contact information",
       "  resume   - View/download my resume",
+      "  portfolio - Open the portfolio website",
       "  clear    - Clear the terminal",
-      "  exit     - Close terminal",
+      "  exit     - Close terminal and open portfolio",
     ],
     about: [
       "Hey! I'm Mishti 👋",
@@ -66,12 +82,16 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
     ],
     resume: [
       "Opening resume...",
-      "Download: mishti-resume.pdf",
+      "Opening Google Drive link in new tab...",
       "",
-      "(In a real implementation, this would download the PDF)",
+    ],
+    portfolio: [
+      "Opening portfolio...",
+      "Navigating to main website...",
+      "",
     ],
     clear: [],
-    exit: ["Closing terminal..."],
+    exit: ["Closing terminal and opening portfolio..."],
   };
 
   useEffect(() => {
@@ -95,15 +115,36 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
       return;
     }
 
-    if (trimmedInput === "exit") {
-      onClose();
-      return;
-    }
-
     let output: string[];
     if (trimmedInput === "clear") {
       setHistory([]);
       setInput("");
+      return;
+    } else if (trimmedInput === "exit") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        onClose();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+      return;
+    } else if (trimmedInput === "portfolio") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        onClose();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+      return;
+    } else if (trimmedInput === "resume") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        window.open("https://drive.google.com/file/d/1zVcKG0xSXQi2MfB9slEddZSah33-H6L-/view?usp=sharing", "_blank");
+      }, 500);
       return;
     } else if (commands[trimmedInput]) {
       output = commands[trimmedInput];

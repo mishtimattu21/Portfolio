@@ -52,6 +52,8 @@ export default {
         "neon-magenta": "hsl(var(--neon-magenta))",
         "deep-space": "hsl(var(--deep-space))",
         "dark-navy": "hsl(var(--dark-navy))",
+        "gb-dark": "hsl(120, 50%, 30%)",
+        "gb-light": "hsl(120, 30%, 85%)",
       },
       borderRadius: {
         lg: "var(--radius)",

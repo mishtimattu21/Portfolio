@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Github, Linkedin, Twitter, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -16,116 +16,143 @@ const Contact = () => {
   };
 
   const socials = [
-    { icon: Github, label: "GitHub", link: "https://github.com", color: "neon-cyan" },
-    { icon: Linkedin, label: "LinkedIn", link: "https://linkedin.com", color: "neon-purple" },
-    { icon: Twitter, label: "Twitter", link: "https://twitter.com", color: "neon-magenta" },
-    { icon: Mail, label: "Email", link: "mailto:mishti@example.com", color: "neon-cyan" },
+    { icon: Github, label: "GitHub", link: "https://github.com/mishtimattu21", color: "neon-cyan" },
+    { icon: Linkedin, label: "LinkedIn", link: "https://www.linkedin.com/in/mishtimattu/", color: "neon-purple" },
+    { icon: Instagram, label: "Instagram", link: "https://www.instagram.com/mishtiimattu/", color: "neon-magenta" },
+    { icon: Mail, label: "Email", link: "mailto:mishtimattu21@gmail.com", color: "neon-cyan" },
+  ];
+
+  const contactInfo = [
+    { label: "Email", value: "mishtimattu21@gmail.com", link: "mailto:mishtimattu21@gmail.com" },
+    { label: "Mobile", value: "+91 9987677759", link: "tel:+919987677759" },
+    { label: "Location", value: "Chennai, Tamil Nadu, India", link: null },
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 bg-background relative">
+    <section id="contact" className="min-h-screen py-20 bg-retro-pattern relative">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-neon-purple">
-          Get In Touch
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Form */}
-          <div className="bg-card/50 backdrop-blur p-8 rounded-lg border border-neon-cyan/20 animate-slide-up">
-            <h3 className="text-2xl font-bold mb-6 text-neon-cyan">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2 text-foreground">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-neon-cyan transition-colors text-foreground"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2 text-foreground">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-neon-cyan transition-colors text-foreground"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2 text-foreground">
-                  Message
-                </label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  rows={5}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-neon-cyan transition-colors text-foreground resize-none"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg text-foreground font-semibold hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
-              >
-                <Send size={18} />
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Info & Socials */}
-          <div className="space-y-8">
-            <div className="bg-card/50 backdrop-blur p-8 rounded-lg border border-neon-purple/20 animate-slide-up">
-              <h3 className="text-2xl font-bold mb-6 text-neon-purple">
-                Let's Connect
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of your vision. Feel free to reach out
-                through any of these platforms!
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {socials.map((social, idx) => (
-                  <a
-                    key={idx}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-3 p-4 bg-background/50 rounded-lg border border-border hover:border-${social.color} transition-all group`}
-                  >
-                    <social.icon
-                      className={`text-${social.color} group-hover:scale-110 transition-transform`}
-                      size={24}
-                    />
-                    <span className="text-foreground font-medium">
-                      {social.label}
-                    </span>
-                  </a>
-                ))}
-              </div>
+        <div className="bg-retro-window border-4 border-retro-border shadow-retro max-w-5xl mx-auto">
+          <div className="flex items-center justify-between bg-retro-panel border-b-2 border-retro-border px-4 py-2">
+            <span className="font-pixel text-lg text-retro-ink">Get In Touch</span>
+            <div className="flex gap-2">
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block"></span>
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block"></span>
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block"></span>
             </div>
+          </div>
+          <div className="p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Contact Form */}
+              <div className="bg-retro-panel/90 border-2 border-retro-border p-6 hover:border-neon-cyan/50 transition-all">
+                <h3 className="text-xl font-pixel mb-6 pb-4 border-b-2 border-retro-border text-retro-ink">Send a Message</h3>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-pixel mb-2 text-retro-ink">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      className="w-full px-4 py-3 bg-retro-window border-2 border-retro-border focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,195,255,0.3)] transition-all text-retro-ink font-pixel text-sm"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-pixel mb-2 text-retro-ink">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className="w-full px-4 py-3 bg-retro-window border-2 border-retro-border focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,195,255,0.3)] transition-all text-retro-ink font-pixel text-sm"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-pixel mb-2 text-retro-ink">
+                      Message
+                    </label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      rows={5}
+                      className="w-full px-4 py-3 bg-retro-window border-2 border-retro-border focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,195,255,0.3)] transition-all text-retro-ink resize-none font-pixel text-sm"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-neon-cyan to-neon-purple text-retro-ink font-pixel hover:shadow-[0_0_25px_rgba(0,195,255,0.5)] hover:scale-105 transition-all flex items-center justify-center gap-2 border-2 border-retro-border mt-2"
+                  >
+                    <Send size={18} />
+                    Send Message
+                  </button>
+                </form>
+              </div>
 
-            <div className="bg-card/50 backdrop-blur p-8 rounded-lg border border-neon-magenta/20">
-              <h3 className="text-2xl font-bold mb-4 text-neon-magenta">
-                Response Time
-              </h3>
-              <p className="text-muted-foreground">
-                I typically respond within <span className="text-neon-cyan font-bold">24-48 hours</span>.
-                For urgent matters, feel free to reach out on LinkedIn!
-              </p>
+              {/* Contact Info & Socials */}
+              <div className="space-y-6">
+                <div className="bg-retro-panel/90 border-2 border-retro-border p-6 hover:border-neon-purple/50 transition-all">
+                  <h3 className="text-xl font-pixel mb-6 pb-4 border-b-2 border-retro-border text-retro-ink">
+                    Let's Connect
+                  </h3>
+                  <p className="text-retro-ink/90 leading-relaxed mb-6 font-pixel text-sm">
+                    I'm always open to discussing new projects, creative ideas, or
+                    opportunities to be part of your vision. Feel free to reach out
+                    through any of these platforms!
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {socials.map((social, idx) => (
+                      <a
+                        key={idx}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center gap-3 p-4 bg-retro-window border-2 border-retro-border hover:border-${social.color} hover:shadow-[0_0_15px_hsl(var(--${social.color}))] transition-all group`}
+                      >
+                        <social.icon
+                          className={`text-${social.color} group-hover:scale-110 transition-transform`}
+                          size={22}
+                        />
+                        <span className="text-retro-ink font-pixel text-sm group-hover:text-neon-cyan transition-colors">
+                          {social.label}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-retro-panel/90 border-2 border-retro-border p-6 hover:border-neon-magenta/50 transition-all">
+                  <h3 className="text-xl font-pixel mb-4 pb-3 border-b-2 border-retro-border text-retro-ink">
+                    Contact Information
+                  </h3>
+                  <div className="space-y-3 text-retro-ink/90 font-pixel text-sm">
+                    {contactInfo.map((info, idx) => (
+                      <div key={idx} className="flex flex-col gap-1">
+                        <span className="text-retro-ink/70 text-xs">{info.label}</span>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className="text-neon-cyan hover:text-neon-purple transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <span>{info.value}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

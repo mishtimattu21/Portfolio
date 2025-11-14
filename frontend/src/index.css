@@ -8,57 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Deep space theme colors */
-    --background: 240 40% 7%;
-    --foreground: 210 100% 95%;
+    /* Black and purple theme colors */
+    --background: 0 0% 0%;
+    --foreground: 270 100% 95%;
 
-    --card: 240 35% 10%;
-    --card-foreground: 210 100% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 270 100% 95%;
 
-    --popover: 240 35% 10%;
-    --popover-foreground: 210 100% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 270 100% 95%;
 
-    /* Neon cyan primary */
-    --primary: 195 100% 50%;
-    --primary-foreground: 240 40% 7%;
+    /* Purple primary */
+    --primary: 270 80% 65%;
+    --primary-foreground: 0 0% 0%;
 
     /* Deep purple secondary */
-    --secondary: 262 83% 58%;
-    --secondary-foreground: 210 100% 95%;
+    --secondary: 270 70% 55%;
+    --secondary-foreground: 270 100% 95%;
 
-    --muted: 240 25% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 270 20% 15%;
+    --muted-foreground: 270 30% 70%;
 
-    /* Neon purple accent */
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 100% 95%;
+    /* Purple accent */
+    --accent: 270 80% 65%;
+    --accent-foreground: 270 100% 95%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 100% 95%;
+    --destructive-foreground: 270 100% 95%;
 
-    --border: 240 25% 20%;
-    --input: 240 25% 20%;
-    --ring: 195 100% 50%;
+    --border: 270 30% 20%;
+    --input: 270 30% 20%;
+    --ring: 270 80% 65%;
 
     --radius: 0.5rem;
 
     /* Custom theme colors */
-    --neon-cyan: 195 100% 50%;
-    --neon-purple: 262 83% 58%;
-    --neon-magenta: 320 100% 50%;
-    --deep-space: 240 40% 7%;
-    --dark-navy: 230 35% 12%;
-    --grid-line: 240 25% 15%;
+    --neon-cyan: 270 80% 70%;
+    --neon-purple: 270 80% 65%;
+    --neon-magenta: 280 75% 70%;
+    --deep-space: 0 0% 0%;
+    --dark-navy: 270 30% 10%;
+    --grid-line: 270 20% 15%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(240, 40%, 7%) 0%, hsl(262, 50%, 15%) 50%, hsl(240, 40%, 7%) 100%);
-    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(195, 100%, 50%, 0.15) 0%, transparent 70%);
-    --gradient-card: linear-gradient(135deg, hsl(240, 35%, 10%) 0%, hsl(240, 35%, 12%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(250, 40%, 8%) 0%, hsl(270, 35%, 6%) 50%, hsl(0, 0%, 3%) 100%);
+    --gradient-glow: radial-gradient(circle at 20% 30%, hsl(270, 60%, 15%, 0.25) 0%, transparent 60%), radial-gradient(circle at 80% 20%, hsl(280, 50%, 12%, 0.2) 0%, transparent 60%);
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 8%) 0%, hsl(270, 30%, 10%) 100%);
     
     /* Shadows & effects */
-    --shadow-neon-cyan: 0 0 20px hsl(195, 100%, 50%, 0.5), 0 0 40px hsl(195, 100%, 50%, 0.3);
-    --shadow-neon-purple: 0 0 20px hsl(262, 83%, 58%, 0.5), 0 0 40px hsl(262, 83%, 58%, 0.3);
-    --shadow-pixel: 4px 4px 0 hsl(195, 100%, 50%);
+    --shadow-neon-cyan: 0 0 20px hsl(270, 80%, 70%, 0.5), 0 0 40px hsl(270, 80%, 70%, 0.3);
+    --shadow-neon-purple: 0 0 20px hsl(270, 80%, 65%, 0.5), 0 0 40px hsl(270, 80%, 65%, 0.3);
+    --shadow-pixel: 4px 4px 0 hsl(270, 80%, 65%);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -73,7 +73,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', 'Consolas', monospace;
   }
   
   /* Pixel font for retro elements */
@@ -90,16 +90,86 @@ All colors MUST be HSL.
     background-size: 40px 40px;
   }
   
-  /* Brick wall background */
+  /* Brick wall background - Game Boy style (light green) */
   .bg-brick-wall {
-    background-color: hsl(240, 40%, 7%);
+    background-color: hsl(120, 30%, 85%);
     background-image: 
-      linear-gradient(335deg, hsl(240, 35%, 12%) 23px, transparent 23px),
-      linear-gradient(155deg, hsl(240, 35%, 12%) 23px, transparent 23px),
-      linear-gradient(335deg, hsl(240, 35%, 12%) 23px, transparent 23px),
-      linear-gradient(155deg, hsl(240, 35%, 12%) 23px, transparent 23px);
+      linear-gradient(335deg, hsl(120, 25%, 75%) 23px, transparent 23px),
+      linear-gradient(155deg, hsl(120, 25%, 75%) 23px, transparent 23px),
+      linear-gradient(335deg, hsl(120, 25%, 75%) 23px, transparent 23px),
+      linear-gradient(155deg, hsl(120, 25%, 75%) 23px, transparent 23px);
     background-size: 58px 58px;
     background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  }
+  
+  /* Retro desktop theme - Black and Purple */
+  .bg-retro-surface {
+    background-color: hsl(0, 0%, 0%);
+  }
+
+  .bg-retro-pattern {
+    background: 
+      linear-gradient(135deg, hsl(250, 40%, 8%) 0%, hsl(270, 35%, 6%) 50%, hsl(0, 0%, 3%) 100%),
+      radial-gradient(circle at 20% 30%, hsl(270, 60%, 15%, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(280, 50%, 12%, 0.2) 0%, transparent 50%),
+      linear-gradient(0deg, hsla(270, 30%, 20%, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(270, 30%, 20%, 0.08) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+
+  .bg-retro-bar {
+    background-color: hsl(270, 40%, 12%);
+  }
+
+  .bg-retro-window {
+    background-color: hsl(0, 0%, 8%);
+  }
+
+  .bg-retro-panel {
+    background-color: hsl(270, 30%, 12%);
+  }
+
+  .text-retro-ink {
+    color: hsl(270, 100%, 90%);
+  }
+
+  .border-retro-border {
+    border-color: hsl(270, 50%, 30%);
+  }
+
+  .shadow-retro {
+    box-shadow: 6px 6px 0 hsl(270, 50%, 10%);
+  }
+
+  .bg-retro-desktop {
+    background-color: hsl(0, 0%, 5%);
+    background-image:
+      linear-gradient(0deg, hsla(270, 50%, 20%, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(270, 50%, 20%, 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 1px 1px, hsla(270, 80%, 50%, 0.15) 1px, transparent 0);
+    background-size: 180px 180px, 180px 180px, 20px 20px;
+  }
+
+  .shadow-retro-icon {
+    box-shadow: 3px 3px 0 hsl(270, 50%, 10%);
+  }
+
+  /* Game Boy green colors */
+  .gb-dark-green {
+    background-color: hsl(120, 50%, 30%);
+  }
+  
+  .gb-light-green {
+    background-color: hsl(120, 30%, 85%);
+  }
+  
+  .gb-border {
+    border-color: hsl(120, 50%, 30%);
+  }
+  
+  .text-gb-dark {
+    color: hsl(120, 50%, 30%);
   }
   
   /* Frosted glass effect */
@@ -140,11 +210,21 @@ All colors MUST be HSL.
   
   .typing-animation {
     overflow: hidden;
-    border-right: 2px solid hsl(var(--neon-cyan));
+    border-right: 2px solid hsl(var(--neon-purple));
     white-space: nowrap;
     animation: typing 3s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
   }
   
+  /* Shimmer animation */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
   /* Smooth scroll */
   html {
     scroll-behavior: smooth;
