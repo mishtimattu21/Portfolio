@@ -1,0 +1,239 @@
+import { useState, useEffect, useRef } from "react";
+import { X, Maximize2, Minimize2 } from "lucide-react";
+
+interface TerminalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Terminal = ({ isOpen, onClose }: TerminalProps) => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [input, setInput] = useState("");
+  const [history, setHistory] = useState<{ command: string; output: string[] }[]>([
+    {
+      command: "",
+      output: [
+        "Welcome to Mishti's Terminal v1.0",
+        "Type 'help' to see available commands",
+        "",
+      ],
+    },
+    {
+      command: "help",
+      output: [
+        "Available commands:",
+        "  about    - Learn about me",
+        "  skills   - View my technical skills",
+        "  projects - See my projects",
+        "  contact  - Get my contact information",
+        "  resume   - View/download my resume",
+        "  portfolio - Open the portfolio website",
+        "  clear    - Clear the terminal",
+        "  exit     - Close terminal and open portfolio",
+        "",
+      ],
+    },
+  ]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
+
+  const commands: Record<string, string[]> = {
+    help: [
+      "Available commands:",
+      "  about    - Learn about me",
+      "  skills   - View my technical skills",
+      "  projects - See my projects",
+      "  contact  - Get my contact information",
+      "  resume   - View/download my resume",
+      "  portfolio - Open the portfolio website",
+      "  clear    - Clear the terminal",
+      "  exit     - Close terminal and open portfolio",
+    ],
+    about: [
+      "Hey! I'm Mishti Mattu 👋",
+      "",
+      "B.Tech CSE @ VIT Chennai (CGPA 9.30, expected 2027)",
+      "Summer Intern @ Citi Corp (2026) | ML Research @ CCPS",
+      "Published in Elsevier · Perplexity Campus Partner",
+    ],
+    skills: [
+      "Technical Skills:",
+      "  • Languages: Python, Java, C/C++, JS/TS, SQL, R",
+      "  • AI/ML: PyTorch, TensorFlow, Scikit-learn, Pandas",
+      "  • Backend: Node.js, Flask, React, PostgreSQL, MongoDB",
+      "  • Tools: Git, AWS, Docker, Linux, Agile, CI/CD",
+    ],
+    projects: [
+      "Key Projects:",
+      "  1. Bodhini - Multilingual RAG AI Assistant",
+      "     github.com/mishtimattu21/Bodhini-prev",
+      "  2. Informula - AI Consumer Safety Platform",
+      "     github.com/mishtimattu21/Informula-2",
+      "  3. Civixity - Civic Engagement Platform",
+      "     github.com/mishtimattu21/Civixity-platform",
+      "  4. Tea Leaf CNN Research (Elsevier publication)",
+      "     doi.org/10.1016/j.rineng.2024.103784",
+    ],
+    contact: [
+      "Let's connect!",
+      "  Instagram: instagram.com/mishtiimattu",
+      "  Phone: +91 9987677759",
+      "  GitHub: github.com/mishtimattu21",
+      "  LinkedIn: linkedin.com/in/mishtimattu",
+      "  Portfolio: mishtimattu.framer.website",
+    ],
+    resume: [
+      "Opening resume...",
+      "Opening Google Drive link in new tab...",
+      "",
+    ],
+    portfolio: [
+      "Opening portfolio...",
+      "Navigating to main website...",
+      "",
+    ],
+    clear: [],
+    exit: ["Closing terminal and opening portfolio..."],
+  };
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
+  }, [history]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedInput = input.trim().toLowerCase();
+
+    if (!trimmedInput) {
+      setInput("");
+      return;
+    }
+
+    let output: string[];
+    if (trimmedInput === "clear") {
+      setHistory([]);
+      setInput("");
+      return;
+    } else if (trimmedInput === "exit") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        onClose();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+      return;
+    } else if (trimmedInput === "portfolio") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        onClose();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+      return;
+    } else if (trimmedInput === "resume") {
+      output = commands[trimmedInput];
+      setHistory([...history, { command: trimmedInput, output }]);
+      setInput("");
+      setTimeout(() => {
+        window.open("https://drive.google.com/file/d/1zVcKG0xSXQi2MfB9slEddZSah33-H6L-/view?usp=sharing", "_blank");
+      }, 500);
+      return;
+    } else if (commands[trimmedInput]) {
+      output = commands[trimmedInput];
+    } else {
+      output = [
+        `Command not found: ${trimmedInput}`,
+        "Type 'help' for available commands",
+      ];
+    }
+
+    setHistory([...history, { command: trimmedInput, output }]);
+    setInput("");
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+      <div
+        className={`${
+          isFullscreen ? "w-full h-full" : "w-full max-w-3xl h-[600px]"
+        } bg-card border-2 border-neon-cyan rounded-lg shadow-2xl glow-cyan flex flex-col transition-all duration-300`}
+      >
+        {/* Terminal Header */}
+        <div className="flex items-center justify-between px-4 py-2 border-b border-neon-cyan/30 bg-dark-navy">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-destructive"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span className="text-sm font-pixel text-neon-cyan ml-4">
+              mishti@terminal
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              className="text-foreground hover:text-neon-cyan transition-colors"
+            >
+              {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+            </button>
+            <button
+              onClick={onClose}
+              className="text-foreground hover:text-destructive transition-colors"
+            >
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Terminal Body */}
+        <div
+          ref={outputRef}
+          className="flex-1 overflow-y-auto p-4 font-mono text-sm bg-background"
+        >
+          {history.map((entry, i) => (
+            <div key={i} className="mb-4">
+              {entry.command && (
+                <div className="flex items-center gap-2 text-neon-cyan">
+                  <span className="text-neon-purple">mishti@terminal:~$</span>
+                  <span>{entry.command}</span>
+                </div>
+              )}
+              {entry.output.map((line, j) => (
+                <div key={j} className="text-foreground pl-0 mt-1">
+                  {line}
+                </div>
+              ))}
+            </div>
+          ))}
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <span className="text-neon-purple">mishti@terminal:~$</span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="flex-1 bg-transparent text-neon-cyan outline-none border-none"
+              autoComplete="off"
+              spellCheck="false"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Terminal;

@@ -1,0 +1,129 @@
+import { useState } from "react";
+import { Brain, Cloud, Code2, Folder, FolderOpen, HardDrive, Server } from "lucide-react";
+
+const skillCategories = [
+  {
+    id: "languages",
+    title: "Languages",
+    path: "C:\\Mishti\\Skills\\Languages",
+    icon: Code2,
+    skills: ["Python", "Java", "C/C++", "JavaScript", "TypeScript", "SQL", "R", "Objective-C"],
+  },
+  {
+    id: "data-ai",
+    title: "Data & AI/ML",
+    path: "C:\\Mishti\\Skills\\Data_AI",
+    icon: Brain,
+    skills: ["NumPy", "Pandas", "Scikit-learn", "PyTorch", "TensorFlow", "Seaborn"],
+  },
+  {
+    id: "backend",
+    title: "Backend & APIs",
+    path: "C:\\Mishti\\Skills\\Backend",
+    icon: Server,
+    skills: ["Node.js", "Flask", "REST APIs", "ReactJS", "PostgreSQL", "MongoDB", "Express.js"],
+  },
+  {
+    id: "tools",
+    title: "Tools & Cloud",
+    path: "C:\\Mishti\\Skills\\Tools",
+    icon: Cloud,
+    skills: ["Git", "AWS", "Docker", "Linux", "Agile", "Scrum", "CI/CD", "VSCode"],
+  },
+];
+
+const totalSkills = skillCategories.reduce((n, c) => n + c.skills.length, 0);
+
+const Skills = () => {
+  const [activeId, setActiveId] = useState(skillCategories[0].id);
+  const active = skillCategories.find((c) => c.id === activeId) ?? skillCategories[0];
+  const ActiveIcon = active.icon;
+
+  return (
+    <section id="skills" className="min-h-screen py-20 bg-retro-pattern relative">
+      <div className="container mx-auto px-6">
+        <div className="bg-retro-window border-4 border-retro-border shadow-retro max-w-6xl mx-auto overflow-hidden">
+          <div className="flex items-center justify-between bg-retro-panel border-b-2 border-retro-border px-4 py-2">
+            <div className="flex items-center gap-3">
+              <HardDrive className="text-neon-purple" size={20} />
+              <span className="font-pixel text-lg text-retro-ink">Skills Explorer</span>
+            </div>
+            <div className="flex gap-2">
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block" />
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block" />
+              <span className="w-3 h-3 bg-retro-border rounded-full inline-block" />
+            </div>
+          </div>
+
+          <div className="skills-stage skills-os-canvas flex flex-col lg:flex-row">
+            <aside className="skills-os-sidebar lg:w-64 shrink-0 p-5 lg:p-6">
+              <p className="font-pixel text-[9px] text-white/70 mb-4 tracking-wider">DRIVES</p>
+              <div className="flex lg:flex-col gap-2.5 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0">
+                {skillCategories.map((cat) => {
+                  const isActive = cat.id === activeId;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setActiveId(cat.id)}
+                      className={`skills-os-folder flex items-start gap-2.5 lg:w-full min-w-[9.5rem] lg:min-w-0 shrink-0 px-3 py-3 text-left transition-all ${
+                        isActive ? "skills-os-folder--active" : ""
+                      }`}
+                    >
+                      {isActive ? (
+                        <FolderOpen size={18} className="shrink-0 text-neon-purple mt-0.5" />
+                      ) : (
+                        <Folder size={18} className="shrink-0 text-neon-purple/80 mt-0.5" />
+                      )}
+                      <span className="font-pixel text-[9px] leading-relaxed min-w-0 break-words skills-os-folder-label">
+                        {cat.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </aside>
+
+            <div className="flex-1 min-w-0 flex flex-col p-5 lg:p-6 lg:pl-0">
+              <div className="skills-os-pathbar flex items-center gap-3 px-4 py-2.5 mb-4">
+                <span className="font-pixel text-[8px] text-neon-purple shrink-0">PATH</span>
+                <code className="text-xs text-[hsl(270_45%_28%)] truncate font-mono font-medium">
+                  {active.path}
+                </code>
+              </div>
+
+              <div className="skills-os-panel flex-1 flex flex-col p-5 md:p-6">
+                <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-neon-purple/25">
+                  <div className="skills-os-icon-badge">
+                    <ActiveIcon size={20} className="text-neon-purple" />
+                  </div>
+                  <h3 className="text-lg font-pixel text-[hsl(270_45%_22%)]">{active.title}</h3>
+                  <span className="skills-os-badge ml-auto font-pixel text-[8px]">
+                    {active.skills.length} files
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 flex-1 content-start">
+                  {active.skills.map((skill) => (
+                    <div key={skill} className="skills-os-file group">
+                      <span className="skills-os-file-icon" aria-hidden />
+                      <span className="skills-os-file-name">{skill}</span>
+                      <span className="text-[9px] font-mono text-neon-purple/50">.skill</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="skills-os-statusbar flex items-center justify-between gap-3 mt-4 px-4 py-2">
+                <span>{totalSkills} modules installed</span>
+                <span className="text-neon-purple font-semibold">Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Skills;
